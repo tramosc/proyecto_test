@@ -1,0 +1,62 @@
+LEEME.txt
+Proyecto: Sistema de Registro de Productos
+________________________________________
+
+
+Requisitos Previos
+Antes de instalar el proyecto, asegúrate de cumplir con los siguientes requisitos:
+1.	Servidor web local: Se recomienda utilizar XAMPP o WAMP con PHP 7.4 o superior.
+2.	Base de datos MySQL/MariaDB.
+3.	Navegador web actualizado.
+4.	Git: Para clonar el repositorio desde una fuente remota.
+
+Pasos para Instalar el Proyecto
+1. Descargar el proyecto
+o	Clona el repositorio desde GitHub (si aplica):
+        git clone https://github.com/tramosc/proyecto_test
+
+
+2. Configurar la base de datos
+    o Crea una base de datos en MySQL llamada, por ejemplo, registro_productos:
+    1.	Ingresa a phpMyAdmin desde tu servidor local.
+    2.	Haz clic en Nueva y crea una base de datos llamada registro_productos (puedes usar otro nombre si lo prefieres).
+
+    o Importa el archivo SQL incluido en el proyecto:
+    1.	Dentro del directorio del proyecto, busca el archivo sql/registro_productos.sql.
+    2.	En phpMyAdmin, selecciona la base de datos creada y utiliza la opción Importar para cargar el archivo registro_productos.sql.
+
+3. Configurar la conexión a la base de datos
+
+    •	Abre el archivo conexion.php que se encuentra en la raíz del proyecto.
+    •	Actualiza las siguientes credenciales con los datos de tu entorno local:
+
+        $conexion = new mysqli('localhost', 'tu_usuario', 'tu_contraseña', 'registro_productos');
+
+    o localhost: Dirección del servidor de base de datos.
+    o tu_usuario: Usuario de la base de datos (por defecto es root en XAMPP/WAMP).
+    o tu_contraseña: Contraseña del usuario (por defecto está en blanco para root en XAMPP/WAMP).
+    o registro_productos: Nombre de la base de datos que creaste.
+
+4.	Iniciar el servidor
+    • Inicia el servidor local desde el panel de control de XAMPP/WAMP.
+    • Asegúrate de que los servicios de Apache y MySQL estén corriendo.
+
+6.	Acceder al proyecto
+
+    1.	Abre tu navegador web e ingresa la siguiente URL:
+        http://localhost/proyecto
+
+2.	Si configuraste correctamente todo, deberías ver la página principal del sistema de registro de productos.
+________________________________________
+Detalles del Proyecto
+•	Estructura principal:
+    o /conexion.php: Archivo para la configuración de la conexión a la base de datos.
+    o /obtener_datos.php: Controlador para manejar las solicitudes AJAX y obtener datos dinámicos (bodegas, sucursales, monedas, etc.).
+    o /guardar_producto.php: Controlador para procesar y validar el formulario de registro de productos.
+    o /sql/registro_productos.sql: Archivo SQL con la estructura de la base de datos y datos iniciales.
+    o /style.css Archivo con los recursos como CSS.
+    o /script.js Archivo que contiene las funciones de renderizado, validaciones y envió de datos del formulario 
+    o /index.html Archivo que contiene el formulario 
+
+•	Dependencias externas:
+o	No se requieren frameworks externos. Todo el proyecto utiliza PHP puro y JavaScript.
