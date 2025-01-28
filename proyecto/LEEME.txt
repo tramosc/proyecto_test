@@ -6,6 +6,8 @@ ________________________________________
 Requisitos Previos
 Antes de instalar el proyecto, asegúrate de cumplir con los siguientes requisitos:
 1.	Servidor web local: Se recomienda utilizar XAMPP o WAMP con PHP 7.4 o superior.
+    Version de php usada: PHP 8.2.0
+    Version de base de datos usada: 10.4.32-MariaDB
 2.	Base de datos MySQL/MariaDB.
 3.	Navegador web actualizado.
 4.	Git: Para clonar el repositorio desde una fuente remota.
