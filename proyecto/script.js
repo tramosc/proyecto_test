@@ -3,6 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const sucursalSelect = document.getElementById("sucursal");
     const monedaSelect = document.getElementById("moneda");
 
+    // Agregar opción vacía por defecto en los selects
+    bodegaSelect.innerHTML = '<option value=""></option>';
+    sucursalSelect.innerHTML = '<option value=""></option>';
+    monedaSelect.innerHTML = '<option value=""></option>';
+
     // Cargar bodegas
     fetch("obtener_datos.php?type=bodegas")
         .then(response => response.json())
@@ -23,14 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cargar sucursales dinámicamente
     bodegaSelect.addEventListener("change", () => {
-        sucursalSelect.innerHTML = '<option value="">Seleccione una sucursal</option>';
-        fetch(`obtener_datos.php?type=sucursales&bodega_id=${bodegaSelect.value}`)
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(sucursal => {
-                    sucursalSelect.innerHTML += `<option value="${sucursal.id}">${sucursal.nombre}</option>`;
+        sucursalSelect.innerHTML = '<option value=""></option>';
+        if (bodegaSelect.value !== "") {
+            fetch(`obtener_datos.php?type=sucursales&bodega_id=${bodegaSelect.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(sucursal => {
+                        sucursalSelect.innerHTML += `<option value="${sucursal.id}">${sucursal.nombre}</option>`;
+                    });
                 });
-            });
+        }
     });
 
     // Validación y envío del formulario
@@ -42,6 +49,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const codigo = document.getElementById("codigo").value;
         if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,15}$/.test(codigo)) {
             alert("El código del producto es inválido.");
+            return;
+        }
+
+        // Validar selects
+        if (bodegaSelect.value === "") {
+            alert("Debe seleccionar una bodega.");
+            return;
+        }
+
+        if (sucursalSelect.value === "") {
+            alert("Debe seleccionar una sucursal.");
+            return;
+        }
+
+        if (monedaSelect.value === "") {
+            alert("Debe seleccionar una moneda.");
             return;
         }
 
